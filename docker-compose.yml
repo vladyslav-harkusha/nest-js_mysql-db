@@ -1,0 +1,10 @@
+services:
+  db:
+    image: mysql:8
+    environment:
+      - MYSQL_DATABASE=my-nestjs-db
+      - MYSQL_USER=tolik
+      - MYSQL_PASSWORD=tolikPass
+      - MYSQL_ROOT_PASSWORD=tolikSuperPass
+    ports:
+      - "3307:3306"
