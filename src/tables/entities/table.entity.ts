@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Column } from 'typeorm/browser';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Table {
