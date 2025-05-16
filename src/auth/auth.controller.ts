@@ -5,6 +5,8 @@ import { User } from './entities/user.entity';
 import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { IUserRequest } from './interfaces/user-request.interface';
+import { ITokens } from './interfaces/tokens.interface';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -16,8 +18,18 @@ export class AuthController {
     }
 
     @Post('login')
-    async login(@Body() loginDto: LoginDto): Promise<{ access_token: string }> {
+    async login(@Body() loginDto: LoginDto): Promise<ITokens> {
         return this.authService.login(loginDto);
+    }
+
+    @Post('refresh')
+    async refresh(@Body() refreshTokenDto: RefreshTokenDto): Promise<ITokens> {
+        return this.authService.refresh(refreshTokenDto);
+    }
+
+    @Post('logout')
+    async logout(@Body() refreshTokenDto: RefreshTokenDto): Promise<void> {
+        return this.authService.logout(refreshTokenDto);
     }
 
     @UseGuards(AuthGuard('jwt'))
